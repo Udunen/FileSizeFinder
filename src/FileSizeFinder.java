@@ -74,12 +74,22 @@ public class FileSizeFinder {
         // Since a GB is 1024x a MB, and a MB is 1024x a KB,
         // this determines how many times to multiply the original size that the getFolderSize() method grabs,
         // which is in KB
-        int powerNum = switch (measurement.toUpperCase()) {
-            case "GB" -> 3;
-            case "MB" -> 2;
-            case "KB" -> 1;
-            default -> 0;
-        };
+        // int powerNum = switch (measurement.toUpperCase()) {
+        //     case "GB" -> 3;
+        //     case "MB" -> 2;
+        //     case "KB" -> 1;
+        //     default -> 0;
+        // };
+        int powerNum;
+        if (measurement.toUpperCase().equals("GB")) {
+            powerNum = 3;
+        } else if (measurement.toUpperCase().equals("MB")) {
+            powerNum = 2;
+        } else if (measurement.toUpperCase().equals("KB")){
+            powerNum = 1;
+        } else {
+            powerNum = 0;
+        }
         
         // Puts the folder names and their size into a map
         Map<String, Double> map = new HashMap<>();
